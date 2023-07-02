@@ -1,0 +1,362 @@
+Git study
+‘-깃,깃허브 필수
+
+깃 설치
+어플리케이션
+1.깃허브데스크탑
+2.소스트리
+3.gitkraken:ui가 화려함
+4.명령어(터미널)
+
+터미널 설치
+1.맥북 - iterm2
+  - git —version // 깃 서치 되어있는지 확인
+➜  ~ git config --list
+➜  ~ git config --global -e : 편집모드로 컨피그 보임
+[user]
+        name = borimhan
+        email = qhfla299653@gmail.com
+➜  ~ git config --global core.editor "code"
+2.윈도우-cmdr(깃이 기본적으로 포함해서 설치해줌)
+
+
+‘-명령어
+Git config —global  user.name “이름”
+Git config —global user.email “이메일”
+ //깃 컨피그에 속성 조정
+➜  ~ git config --global core.autocrlf input //맥북 text\n
+➜  ~ git config --global core.autocrlf true/윈도우 엔터 : text\r\n
+//캐리지 리턴 자동으로 없애줌 //윈도우
+
+//자주쓰는 명령어
+Git init //깃 초기화
+➜  git git:(master)
+//기본적으로 master	브랜치가 생성됨 기본적으로 커밋해서 버전을 관리하는 브랜치는 마스터 브랜치임
+Rm -rf git //git삭제
+Git status
+//alias
+➜  git git:(master) git config --global alias.st status
+➜  git git:(master) git st
+
+Git config —h //헬프
+명령어 다음에 속성값 간단하게 명령어 확인하는거
+
+
+1.git workflow(깃 3가지 작업환경)
+ — 1)워킹 디렉토리 : 프로젝트 소스수정 로컬
+       a.txt , b.txt , c.txt 
+        //언트랙.   
+       //트랙 - 깃이 쫒아가고 있는거 (수정, 수정안된거 찾을수 있음)
+        수정된거만 스테이징 어리어에 git add 가능
+On branch master
+
+No commits yet
+//언트랙 파일 3개 있다 스테이지 올리려면 git add하면됨
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	a.txt
+	b.txt
+	c.txt
+
+Git add *
+Git add .  //차이 확인 하기…
+
+
+Git ignore  //git추적 하기 싫은것들 예를들면 로그 
+Echo *.log > .gitignore
+➜  git git:(master) ✗ cat .gitignore
+log.log
+
+컨트롤 케이 누르면 터미널 깨끗 하게됨
+
+Git diff 
+git config --global -e //편집모드 비쥬얼코드랑 업데이트 되게 
+블로그 찾아 보기
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+Git log 
+
+
+➜  git git:(master) ✗ git rm --cached *
+Git add 전부 취소 
+
+    2 )스테이징 에리어 : 작업하다가 버전 히스토리에 저장할 준비가 되면 파일들을 옮겨 놓는 곳
+      c.txt, b.txt  올림 -> commit
+Git commit -am “all commit”
+-a all
+-m message
+
+    3)깃 디렉토리 : 버전에 히스토리를 가지고 있는 깃 레파지토리
+   commit하면 깃 버전 히스토리에 저장함(c.txt , b.txt)
+//깃 디렉토리에 저장되는 버전들은 checkout명령어를 통해서 언제든지 원하는 버전으로 돌아 갈수 있음
+//위에는 전부 로컬 
+리모트 
+4.깃허브 서버 
+  - git push 해서 서버에 올림(로컬->서버에 올림)
+  -git pull//서버에서 로컬로 다시 받는거 
+   
+23.07.02(일)
+//인프런 (지옥에서 온 Git)
+//git reset (commit을 취소하는 명령어)
+1.git reset
+Copy 는 필수!!
+Git log 로  5,4,삭제 하고 3으로 돌아가고 싶으면 reset
+Git reset **log로 보았던  commit 6806f034c102f37fa01b16648a8365a03e8a030b (H
+이값 넣기
+
+Git reset 6806f034c102f37fa01b16648a8365a03e8a030b —hard
+//하드는.. 소프트…옵션 나중에 배울것임 (하드는 조금 위험함)
+Git log 하면 4,5, 사라짐
+버전 3으로 소스코드 상태로 돌아감
+//4,5도 복구 가능함
+리셋은 공유하기전까지 가능…  자기 로컬에서..원격저장소에서 사용은 하지마라…
+2.git revert
+-커밋 취소 하는거임 리셋처럼
+커밋을 취소하면서 새로운 버전을 생성하는거임
+
+
+
+
+
+
+
+https://medium.com/@hohpark/vs-code%EB%A5%BC-git-diff-tool%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0-88baa1d9f2b3
+
+‘-영상
+https://www.youtube.com/watch?v=Z9dvM7qgN9s&list=WL&index=2
+
+
+
+
+
+인프런-지옥에서온 git
+지옥에서 온 Git
+
+‘-git commit —help (git 매뉴얼 볼수 잇음)
+Git commit -a (add 자동으로 해주고 커밋까지 해줌)
+Git commit -am (m은 커밋 메세지)
+
+섹션3.git의혁신 -branch
+
+3-1 branch만들기
+ -git init 
+ -vim f1.txt
+ -git add 
+ -git commit
+-vim f1.txt //수정
+-git -am “sss” ;; //a add 자동적으로 해주는거 m은 메세지 옵션
+ -git branch exp //  exp브랜치 만들기 (현재 메인 브랜치는 마스터)
+ -git checkout exp(메인 브랜치exp로 바뀜)
+- (Exp , main 브랜치 같은 상태)
+- Vim f2.txt
+- Git add
+- Git commit
+- Git checkout master (f2.txt없음//_
+
+3-2 branch정보 확인
+  - git log —branches
+➜  git git:(exp) ✗ git log --branches --decorate --graph
+➜  git git:(exp) ✗ git log --branches --decorate --graph —online //한줄로 보여줌
+
+Git log master..exp (마스터랑 exp다른점 보여줌)
+Git log -p master..exp (p옵션 diff)
+Git diff master..exp
+
+fatal: ambiguous argument '—-branches': unknown revision or path not in the workcommit 6806f034c102f37fa01b16648a8365a03e8a030b (HEAD -> exp, master)
+헤드 exp, master 지금 현재 상태 같다..
+
+3-3브랜치 병합
+➜  git git:(exp) ✗ git log --branches --decorate --graph
+항상 부모 커밋 확인
+➜  git git:(exp) ✗ git log --branches
+현재 마스터 브랜치임
+Git merge exp (메인에다가 exp브랜치 머지함)
+Exp = master 같은 상태임..
+
+Git checkout exp
+근데 exp는 머지안해서 현재 같은상태 아님
+Git merge master하면 같은상태됨
+Git checkout master
+//exp버리기
+Git branch -d exp(exp브랜치 삭제)
+
+3-4 git stash (숨기기)
+ — 1)워킹 디렉토리 : 프로젝트 소스수정 로컬 ..워킹 디렉토리에서 숨기는 기능임
+1.git init
+ //master
+Vim f1.txt
+Git checkout -b exp(브랜치 생성과 동시에 체크아웃까지)
+Git checkout master
+Git status
+Git checkout exp
+Git status
+
+Git stash —help
+Git stash 
+//마스터에서 작업중인데 갑자기 exp 수정해야됨 exp브랜치 왔지만 status확인하면
+마스터에서 수정중인거 modified파일로 계속뜸..존나 짜증남 그래서 stash로 숨김
+exp브랜치 왔지만 계속 보여서 stash쓰면 안보인다..
+그래서 작업하고
+exp작업하고 올리고 
+마스터 다시옴
+//git checkout master
+Git stash apply //다시 보임
+Git status
+Git stash list (수정된거 리스트 쫙쯤 // 최신이 위에 뜬다.)
+//git reset —hard HEAD(작업한거 다지움..)
+Git list
+Git apply//다시 나타남
+Git reset —hard//다시 날라감
+Git stash apply//다시 나타남 //왜냐면 리스트에는 있기 떄문 git stash list
+Git stash drop//이제 전부 드롭시킴 날라감 리스트에 드롭
+Git stash pop (apply + drop)적용시키도 리스트에 드롭
+Git stash는 add 워킹저장소에 올려야지만 추적 감추기 가능
+
+
+3-5)브랜치 했을때 내부적으로 나타나는일들
+Git init
+Head 파일:방금커밋한 내용 가리키고 있음
+헤드는 파일로 존재함..
+헤드는//현재 가리키는 브랜치 가리키고 있음..
+
+3-5-1)//브랜치 충돌해결
+머지할떄 파일내용 다를떄 충돌일어날때
+브랜치 만들기
+Git branch exp
+Git branch -D exp .//D는 강제로 삭제
+
+Vim master.txt
+Git add master
+Git commit -m “66”
+
+Git checkout exp
+
+Vim exp.txt
+Git add
+Git commit -m “7”
+
+Git checkout master
+
+Exp->7
+Master->6번 가리킴
+
+//git merge exp하게되면
+머지커밋 생성
+
+마스터는 exp껄가지고와서 머지 됨..
+
+
+//파일이 다르면 무조건 무조건 자동으로 합쳐줌.. 7,6번 파일이 다르니까 
+근데 파일이 같으면… 무조건 문제 생김
+
+//같은 파일 만들기
+Git checkout exp
+Vim common.txt 
+  - function a()
+Git add 
+Git commit -m “8”
+
+
+Git checkout master
+Git merge exp
+2개 합쳐지구 커먼 파일 생김
+
+Vim common.txt 
+ - b//추가함 마스터 브랜치에서 
+  - function a()
+
+Git -am “9”
+
+Git checkout exp
+
+
+Vim common.txt 
+ - c//추가함 exp브랜치에서 
+  - function a()
+Git am “10”
+
+Git checkout master
+
+현재 mater exp 커몬파일 내용 서로 다음..
+
+현재 마스터 브랜치에서
+Git merge exp 하게되면 머지되고..
+
+
+Vim common.txt 
+ - c//추가함 exp 브랜치에서 
+-b //마스터  마스터브랜치에서
+- function a()
+머지되서 내용다 추가 되서 나옴…
+
+
+
+..현재 마스터 내용은 병함
+
+Git checkout exp
+exp는 //exp는 마스터 머지 안했으니까..
+
+Vim common.txt 
+ - c//추가함 exp브랜치에서 
+  - function a()
+
+Git merge master 하면 똑같은 상태가됨…
+
+Git checkout master
+다시마스터와서
+Vim common.txt 
+ - c//추가함 exp 브랜치에서 
+-b //마스터  마스터브랜치에서
+- function a()12344// 추가함
+Git am “11”
+
+Git checkout exp
+Vim common.txt 
+ - c//추가함 exp 브랜치에서 
+-b //마스터  마스터브랜치에서
+- function a()12344556677889910// 추가함
+
+Git -am “12”
+- [ ] 같은부분을 넣었을때 머지하면.///무슨일이 일어날까?
+
+Git checkout master
+Git merge exp //
+-automerge common.txt failed남!! 페일남
+Git status 하면 unmerged paths : both modified : common.txt
+라고 나옴… 동시에 수정이 되었다 common.txt파일이..
+병함 실패 함..
+
+Common.txt파일 열면..
+Vim common.txt
+<<<HEAD  :현재 체크아웃한 브랜치의 수정사항(마스터_
+==== : 구분자
+>>>>Exp (exp)브랜치의 수정사항 
+이 정보를 바탕으로 해서 병합 처리 해야됨………
+>>>> <<<열어서… 삭제하고 그지랄 해됨…
+
+Git -am “13”
+하먄 커밋됨… 머지까지 됨..
+
+
+3-5)깃 과거로 돌아가는거..reset checkkout 
+Git init
+Vim f1.txt
+Git add 
+Git commit -m”1”
+
+Vim f1.txt
+1
+2
+3
+4
+
+Git commit -m “1 , 2, 3, 4” 4개까지 커밋함
+Git log 해서 커밋 아이디 보고 리셋할 커밋 아이디 복사 해서 붙여녛기
+
+Git reset —hard 돌아갈 커밋아이디 붙여넣기 (git log  333)보면됨
+Git log 하면 3까지 돌아감.. 4,5 삭제됨
+이전에 커밋한건 삭제됨
+
